@@ -1,0 +1,21 @@
+package main
+
+import (
+	"fmt"
+)
+
+func reverseArray(array [7]int) []int {
+	n := len(array) - 1
+	reversed := make([]int, n)
+	for i := 0; i < n; i++ {
+		reversed[i] = array[n-i-1]
+	}
+	return reversed
+}
+
+func main() {
+	array := [7]int{9, 5, 4, 3, 6, 8}
+	fmt.Println("Original Array: ", array)
+	reversed := reverseArray(array)
+	fmt.Println("Reversed Array: ", reversed)
+}

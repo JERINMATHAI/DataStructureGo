@@ -1,0 +1,93 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertNode(num int) {
+
+	newNode := new(Node)
+	newNode.data = num
+
+	if ll.head == nil {
+		ll.head = newNode
+		return
+	}
+	temp := ll.head
+	for temp != nil {
+		if temp.next == nil {
+			temp.next = newNode
+			return
+		} else {
+			temp = temp.next
+		}
+
+	}
+
+}
+
+func (ll *LinkedList) SearchNode(num int) {
+	temp := ll.head
+
+	for temp != nil {
+		//fmt.Println(temp)
+		if temp.data == num {
+			fmt.Println("Element found")
+			return
+		}
+		temp = temp.next
+	}
+	fmt.Println("Element not found")
+}
+
+func (ll *LinkedList) Display() {
+
+	temp := ll.head
+	for temp != nil {
+		fmt.Printf("%d-->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Search Node from Linked List")
+	fmt.Println("*****************************")
+	var choice int
+	list := LinkedList{}
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert Node")
+		fmt.Println("2. Search Node")
+		fmt.Println("3. Display")
+		fmt.Scan(&choice)
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the number")
+			fmt.Scan(&num)
+			list.insertNode(num)
+
+		case 2:
+			var key int
+			fmt.Println("Enter the value to search")
+			fmt.Scan(&key)
+			list.SearchNode(key)
+
+		case 3:
+			list.Display()
+
+		default:
+			fmt.Println("Nothing")
+		}
+	}
+}

@@ -1,0 +1,15 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Stack")
+	stack := []int{}
+	stack = append(stack, 1)
+	stack = append(stack, 2)
+	stack = append(stack, 3)
+	fmt.Println("Stack after push: ", stack)
+
+	stack = stack[:len(stack)-1]
+	fmt.Println("Stack after pop:", stack)
+}

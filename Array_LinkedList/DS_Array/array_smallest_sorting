@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+
+func main() {
+	var temp int
+	fmt.Println("Smallest array element")
+	fmt.Println("")
+	var size int
+	fmt.Println("Enter the size of array")
+	fmt.Scan(&size)
+	var array = make([]int, size)
+	fmt.Println("Enter the ", size, "array elements")
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Println(array)
+	//smallest
+	for i := 0; i < size-1; i++ {
+		for j := i + 1; j < size; j++ {
+			if array[i] > array[j] {
+				temp = array[i]
+				array[i] = array[j]
+				array[j] = temp
+			}
+		}
+	}
+	fmt.Println("Smallest element is:", array[0])
+}

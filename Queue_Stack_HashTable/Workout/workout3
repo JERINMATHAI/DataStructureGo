@@ -1,0 +1,23 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Selection Sort")
+	array := []int{2, 4, 9, 1, 0, 5}
+	fmt.Println("Before: ", array)
+	selectionSort(array)
+	fmt.Println("After: ", array)
+}
+func selectionSort(array []int) {
+	size := len(array)
+	for i := 0; i < size; i++ {
+		minIndex := i
+		for j := i + 1; j < size; j++ {
+			if array[j] < array[minIndex] {
+				minIndex = j
+			}
+		}
+		array[i], array[minIndex] = array[minIndex], array[i]
+	}
+}

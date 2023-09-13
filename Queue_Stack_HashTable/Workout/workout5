@@ -1,0 +1,103 @@
+package main
+
+import "fmt"
+
+const ArraySize = 7
+
+type HashTable struct {
+	array [ArraySize]*bucket
+}
+
+type bucket struct {
+	head *bucketNode
+}
+
+type bucketNode struct {
+	key   string
+	value string
+	next  *bucketNode
+}
+
+func Init() *HashTable {
+	result := &HashTable{}
+	for i := range result.array {
+		result.array[i] = &bucket{}
+	}
+	return result
+}
+
+func hash(key string) int {
+	sum := 0
+	for _, v := range key {
+		sum += int(v)
+	}
+	return sum % ArraySize
+}
+
+func (h *HashTable) insert(key string, value string) {
+	index := hash(key)
+	if !h.array[index].Search(key) {
+		h.array[index].Insert(key, value)
+	} else {
+		fmt.Println("Key already exist!")
+	}
+}
+
+func (h *HashTable) search(key string, value string) bool {
+	index := hash(key)
+	return h.array[index].Search(value)
+}
+
+func (h *HashTable) delete(key string) {
+	index := hash(key)
+	h.array[index].Delete(key)
+}
+
+func (b *bucket) Insert(k string, v string) {
+	if !b.Search(k) {
+		newNode := new(bucketNode)
+		newNode.key = k
+		newNode.value = v
+
+		newNode.next = b.head
+		b.head = newNode
+	} else {
+		fmt.Println(k, "Already exist")
+	}
+}
+
+func (b *bucket) Search(k string) bool {
+	temp := b.head
+
+	for temp != nil {
+		if temp.key == k {
+			return true
+		}
+		temp = temp.next
+	}
+	return false
+
+}
+
+func (b *bucket) Delete(k string) {
+	if b.head.key == k {
+		b.head = b.head.next
+		return
+	}
+	temp := b.head
+	for temp.next != nil {
+		if temp.next.key == k {
+			temp.next = temp.next.next
+			return
+		}
+		temp = temp.next
+	}
+	fmt.Println("doesn't exist")
+
+}
+
+func main() {
+	fmt.Println("Hash table")
+	testHashTable := Init()
+	fmt.Println(testHashTable)
+}

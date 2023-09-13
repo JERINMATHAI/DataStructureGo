@@ -1,0 +1,94 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+//insert
+
+func (ll *LinkedList) insertNode(num int) {
+
+	newNode := new(Node)
+	newNode.data = num
+
+	if ll.head == nil {
+		ll.head = newNode
+		return
+	} else {
+		temp := ll.head
+		for temp != nil {
+			if temp.next == nil {
+				temp.next = newNode
+				return
+			} else {
+				temp = temp.next
+			}
+		}
+	}
+}
+
+//Delete
+
+func (ll *LinkedList) DeleteNode(num int) {
+	temp := ll.head
+	for temp != nil {
+		if temp.next.data == num {
+			temp.next = temp.next.next
+			return
+		}
+		temp = temp.next
+	}
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp != nil {
+		fmt.Printf("%d--->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Linked list Deletion")
+	fmt.Println("********************")
+	var choice int
+	list := LinkedList{}
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert element")
+		fmt.Println("2. Delete node")
+		fmt.Println("3. Display")
+
+		fmt.Scan(&choice)
+
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the number")
+			fmt.Scan(&num)
+			list.insertNode(num)
+
+		case 2:
+			var num int
+			fmt.Println("Enter the number")
+			fmt.Scan(&num)
+			list.DeleteNode(num)
+
+		case 3:
+			list.Display()
+
+		default:
+			fmt.Println("Nothing")
+		}
+	}
+
+}

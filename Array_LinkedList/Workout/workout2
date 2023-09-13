@@ -1,0 +1,17 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Array")
+	var size int
+	fmt.Println("Enter the size of arrray")
+	fmt.Scan(&size)
+
+	fmt.Println("Enter the ", size, "Array elements")
+	var array = make([]int, size)
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Print(array)
+}

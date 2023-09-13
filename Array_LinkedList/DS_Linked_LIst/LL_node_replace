@@ -1,0 +1,86 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertNode(num int) {
+	newNode := new(Node)
+	newNode.data = num
+
+	temp := ll.head
+
+	ll.head = newNode
+	newNode.next = temp
+}
+
+func (ll *LinkedList) replaceNode(num, num1 int) {
+	newNode := new(Node)
+	newNode.data = num1
+	temp := ll.head
+	for temp != nil {
+		if temp.next.data == num {
+			temp.next.data = num1
+			return
+		}
+		temp = temp.next
+	}
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp != nil {
+		fmt.Printf("%d-->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Replace")
+	fmt.Println("********")
+
+	var choice int
+	list := LinkedList{}
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert node")
+		fmt.Println("2. Replace Node")
+		fmt.Println("3. Display")
+
+		fmt.Scan(&choice)
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the number")
+			fmt.Scan(&num)
+			list.insertNode(num)
+
+		case 2:
+			var num int
+			var num1 int
+			fmt.Println("Enter the number you want to replace")
+			fmt.Scan(&num)
+			fmt.Println("Enter the number you want to add")
+			fmt.Scan(&num1)
+			list.replaceNode(num, num1)
+
+		case 3:
+			list.Display()
+
+		default:
+			fmt.Println("Nothing")
+		}
+	}
+
+}

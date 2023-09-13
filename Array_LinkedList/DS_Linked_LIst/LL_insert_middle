@@ -1,0 +1,102 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertNode(num int) {
+
+	newNode := new(Node)
+	newNode.data = num
+
+	if ll.head == nil {
+		ll.head = newNode
+		return
+	} else {
+		temp := ll.head
+		for temp != nil {
+			if temp.next == nil {
+				temp.next = newNode
+				return
+			} else {
+				temp = temp.next
+			}
+		}
+	}
+}
+
+func (ll *LinkedList) insertMiddle(num, num1 int) {
+
+	newNode := new(Node)
+	newNode.data = num1
+
+	temp := ll.head
+
+	for temp != nil {
+		prev := temp
+		if temp.data == num {
+			flag := prev.next
+			prev.next = newNode
+			newNode.next = flag
+			return
+		}
+		temp = temp.next
+
+	}
+
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp != nil {
+		fmt.Printf("%d--->", temp.data)
+		temp = temp.next
+	}
+}
+func main() {
+	fmt.Println("")
+	fmt.Println("Linked List Insert Middle")
+	fmt.Println("**************************")
+	var choice int
+	list := LinkedList{}
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert value")
+		fmt.Println("2. Insert value at middle")
+		fmt.Println("3. Display")
+
+		fmt.Scan(&choice)
+
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the number")
+			fmt.Scan(&num)
+			list.insertNode(num)
+
+		case 2:
+			var num1 int
+			var num2 int
+			fmt.Println("Enter the number after you want you want to insert")
+			fmt.Scan(&num1)
+			fmt.Println("Enter the number you want to insert")
+			fmt.Scan(&num2)
+			list.insertMiddle(num1, num2)
+
+		case 3:
+			list.Display()
+
+		default:
+			fmt.Println("---Nothing---")
+		}
+	}
+}

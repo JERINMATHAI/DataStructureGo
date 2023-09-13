@@ -1,0 +1,25 @@
+package main
+
+import "fmt"
+
+func main() {
+	var size int
+	fmt.Println("enter the size")
+	fmt.Scan(&size)
+	var array = make([]int, size)
+	fmt.Println("enter ", size, "array elements")
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Println(array)
+	largest := array[0]
+	for i := 0; i < size; i++ {
+		if array[i] > largest {
+			largest = array[i]
+			temp := i
+			array[temp] = largest + 1
+		}
+	}
+	fmt.Println("largest elment is ", largest)
+	fmt.Println(array)
+}

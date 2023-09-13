@@ -1,0 +1,80 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type Queue struct {
+	front *Node
+	rear  *Node
+}
+
+func (q *Queue) enQueue(num int) {
+	newNode := new(Node)
+	newNode.data = num
+
+	if q.front == nil {
+		q.front = newNode
+		q.rear = newNode
+	} else {
+		q.rear.next = newNode
+		q.rear = newNode
+	}
+}
+
+func (q *Queue) deQueue() {
+	if q.front == nil {
+		fmt.Println("Queue is empty")
+	} else {
+		q.front = q.front.next
+	}
+}
+
+func (q *Queue) Display() {
+	temp := q.front
+	for temp != nil {
+		fmt.Printf("[%d]\n", temp.data)
+		temp = temp.next
+	}
+}
+
+func (q *Queue) isEmpty() bool {
+	return q.front == nil
+}
+
+func main() {
+	queue := Queue{}
+	fmt.Println("Queue using stack")
+	var choice int
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. is Empty")
+		fmt.Println("2. enQueue")
+		fmt.Println("3. deQueue")
+		fmt.Println("4. Display")
+		fmt.Scan(&choice)
+		switch choice {
+		case 1:
+			if queue.isEmpty() {
+				fmt.Println("Queue is empty")
+			} else {
+				fmt.Println("Queue is not empty")
+			}
+		case 2:
+			var num int
+			fmt.Println("Enter the Number you want to enqueue : ")
+			fmt.Scan(&num)
+			queue.enQueue(num)
+		case 3:
+			queue.deQueue()
+		case 4:
+			queue.Display()
+
+		}
+
+	}
+}

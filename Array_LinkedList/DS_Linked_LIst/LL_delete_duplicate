@@ -1,0 +1,102 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertNode(num int) {
+
+	newNode := new(Node)
+	newNode.data = num
+
+	if ll.head == nil {
+		ll.head = newNode
+		return
+	} else {
+		temp := ll.head
+		for temp != nil {
+			if temp.next == nil {
+				temp.next = newNode
+				return
+			} else {
+				temp = temp.next
+			}
+		}
+	}
+}
+
+func (ll *LinkedList) DeleteNode(num int) {
+	temp := ll.head
+	for temp != nil {
+		if temp.next.data == num {
+			temp.next = temp.next.next
+			return
+		}
+		temp = temp.next
+	}
+}
+
+func (ll *LinkedList) DuplicateDelete() {
+	temp := ll.head
+
+	for temp != nil {
+		num1 := temp.next
+		for num1 != nil {
+			if num1.data == temp.data {
+				ll.DeleteNode(num1.data)
+			}
+			num1 = num1.next
+		}
+
+		temp = temp.next
+	}
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp != nil {
+		fmt.Printf("%d--->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Delete Duplicate Elements")
+	fmt.Println("**************************")
+	var choice int
+	list := LinkedList{}
+	for true {
+		fmt.Println("Enter your choices")
+		fmt.Println("1. Insert Node")
+		fmt.Println("2. Delete duplicate element")
+		fmt.Println("3. Display")
+		fmt.Println("4. Exit")
+
+		fmt.Scan(&choice)
+
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the node")
+			fmt.Scan(&num)
+			list.insertNode(num)
+		case 2:
+			list.DuplicateDelete()
+		case 3:
+			list.Display()
+		default:
+			os.Exit(0)
+		}
+	}
+}

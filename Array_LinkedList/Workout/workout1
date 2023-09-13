@@ -1,0 +1,75 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func arrayCreation() ([]int, int) {
+	var size int
+	fmt.Println("Enter the size")
+	fmt.Scan(&size)
+	var array = make([]int, size)
+	fmt.Println("Enter the", size, "elements of array")
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Println(array)
+	return array, size
+}
+
+func (ll *LinkedList) Insert(array []int, size int) {
+	for i := 0; i < size; i++ {
+		newNode := new(Node)
+		newNode.data = array[i]
+		if ll.head == nil {
+			ll.head = newNode
+		} else {
+			temp := ll.head
+			for temp != nil {
+				if temp.next == nil {
+					temp.next = newNode
+					break
+				} else {
+					temp = temp.next
+				}
+			}
+		}
+	}
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+	for temp != nil {
+		fmt.Printf("%d--->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Array to linked list")
+	var choice int
+	list := LinkedList{}
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert")
+		fmt.Println("2. Display")
+		fmt.Scan(&choice)
+		switch choice {
+		case 1:
+			array, size := arrayCreation()
+			list.Insert(array, size)
+		case 2:
+			list.Display()
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	//Array with 5 elements
+	a := [5]int{1, 2, 3, 4, 5}
+
+	//Length of array
+	fmt.Println("Array length: ", len(a))
+
+	//Print whole array elements
+	fmt.Println("Array elements: ", a)
+
+	//Print array elements one by one
+	fmt.Println("1st element: ", a[0])
+	fmt.Println("2nd element: ", a[1])
+	fmt.Println("3rd element: ", a[2])
+
+	//Array from user
+	var array [5]int
+	fmt.Println("Enter 5 Array elements")
+	for i := 0; i < 5; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Println("The array is:", array)
+
+}

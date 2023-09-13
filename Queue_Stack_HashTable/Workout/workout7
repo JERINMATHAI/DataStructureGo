@@ -1,0 +1,40 @@
+package main
+
+import (
+	"fmt"
+)
+
+func quickSort(array []int, left, right int) {
+	if left < right {
+		pivotIndex := partition(array, left, right)
+		quickSort(array, left, pivotIndex-1)
+		quickSort(array, pivotIndex+1, right)
+	}
+}
+func partition(array []int, left, right int) int {
+	pivot := array[left]
+	i := left + 1
+	j := right
+
+	for {
+		for i <= j && array[i] <= pivot {
+			i++
+		}
+		for i <= j && array[j] >= pivot {
+			j--
+		}
+		if i <= j {
+			array[i], array[j] = array[j], array[i]
+		} else {
+			break
+		}
+	}
+	array[left], array[j] = array[j], array[left]
+	return j
+}
+func main() {
+	array := []int{6, 4, 8, 0, 1}
+	fmt.Println("before: ", array)
+	quickSort(array, 0, len(array)-1)
+	fmt.Println("after: ", array)
+}

@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func main() {
+	//Replace element with the
+	var str string
+	fmt.Println("Enter the string")
+	fmt.Scan(&str)
+	num := 3
+	for i := 0; i < len(str); i++ {
+		if i+num >= len(str) {
+			break
+		} else {
+			fmt.Printf("%s", string(str[i+num]))
+		}
+	}
+}

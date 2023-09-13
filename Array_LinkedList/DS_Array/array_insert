@@ -1,0 +1,41 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("____Array Insert____")
+	fmt.Println(" ")
+
+	var size int
+	fmt.Println("Enter the size of array: ")
+	fmt.Scanf("%d", &size)
+
+	fmt.Println("Enter ", size, " elements in array: ")
+	var array = make([]int, size)
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array[i])
+	}
+	fmt.Println(array)
+
+	var position int
+	fmt.Println("Enter the position where you want to insert the element: ")
+	fmt.Scan(&position)
+
+	var value int
+	fmt.Println("Enter the value that you want to insert: ")
+	fmt.Scan(&value)
+
+	if position <= size && position >= 0 {
+		for i := size; i > position; i-- {
+			array[i] = array[i-1]
+			array[position] = value
+		}
+		for i := 0; i <= size; i++ {
+			fmt.Printf("%d", &array[i])
+		}
+
+	} else {
+		fmt.Println("Invalid Position")
+	}
+
+}

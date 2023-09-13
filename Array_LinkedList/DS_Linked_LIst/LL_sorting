@@ -1,0 +1,92 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertNode(num int) {
+
+	newNode := new(Node)
+	newNode.data = num
+
+	if ll.head == nil {
+		ll.head = newNode
+		return
+	} else {
+		temp := ll.head
+		for temp != nil {
+			if temp.next == nil {
+				temp.next = newNode
+				return
+			} else {
+				temp = temp.next
+			}
+		}
+	}
+}
+
+func (ll *LinkedList) sortNodes() {
+
+	temp := ll.head
+
+	for temp != nil {
+		num1 := temp.next
+		for num1 != nil {
+			if num1.data < temp.data {
+				flag := temp.data
+				temp.data = num1.data
+				num1.data = flag
+			}
+			num1 = num1.next
+		}
+		fmt.Printf("%d-->", temp.data)
+		temp = temp.next
+	}
+
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp != nil {
+		fmt.Printf("%d--->", temp.data)
+		temp = temp.next
+	}
+}
+
+func main() {
+	fmt.Println("Sorting linked list")
+	fmt.Println("********************")
+	var choice int
+	list := LinkedList{}
+
+	for true {
+		fmt.Println("Enter your choice")
+		fmt.Println("1. Insert node")
+		fmt.Println("2. Sort linked list")
+		fmt.Println("3. Display")
+
+		fmt.Scan(&choice)
+		switch choice {
+		case 1:
+			var num int
+			fmt.Println("Enter the node")
+			fmt.Scan(&num)
+			list.insertNode(num)
+
+		case 2:
+			list.sortNodes()
+		case 3:
+			list.Display()
+		default:
+			fmt.Println("Nothing")
+		}
+	}
+}

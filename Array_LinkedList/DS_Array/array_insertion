@@ -1,0 +1,15 @@
+package main
+
+import "fmt"
+
+func main() {
+	arr := []int{1, 2, 3, 4}
+	fmt.Println("Array is: ", arr)
+
+	arr = append(arr, 5)
+	fmt.Println("Array is: ", arr)
+
+	arr[2] = 7
+	fmt.Println("Array is: ", arr)
+
+}

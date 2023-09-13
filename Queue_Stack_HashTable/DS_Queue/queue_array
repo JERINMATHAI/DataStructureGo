@@ -1,0 +1,27 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Queue")
+
+	queue := []int{1, 2, 3}
+	fmt.Println("Queue : ", queue)
+
+	//enqueue
+	queue = append(queue, 4)
+	fmt.Println("Queue after enqueue : ", queue)
+
+	//dequeue
+	front := queue[0]
+	queue = queue[front:]
+	fmt.Println("Queue after dequeue : ", queue)
+
+	//peek- to get first element of the queue without removing it
+	fmt.Println("Queue after peek : ", queue[0])
+
+	//length
+	size := len(queue)
+	fmt.Println("Length of queue: ", size)
+
+}

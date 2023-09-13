@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Copy array elements to another")
+	var size int
+	fmt.Println("Enter the size of array")
+	fmt.Scan(&size)
+	var array1 = make([]int, size)
+	fmt.Println("Enter", size, "elements: ")
+	for i := 0; i < size; i++ {
+		fmt.Scan(&array1[i])
+	}
+	fmt.Println("Original Array")
+	fmt.Println(array1)
+	var array2 = make([]int, size)
+	for i := 0; i < size; i++ {
+		array2[i] = array1[i]
+	}
+	fmt.Println("Copied Array")
+	fmt.Println(array2)
+
+}

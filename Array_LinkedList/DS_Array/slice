@@ -1,0 +1,20 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	var limit int
+
+	fmt.Println("Slice")
+	// enter the size of array
+	fmt.Println("Enter the size: ")
+	fmt.Scanf("%d", &limit)
+
+	var slice = make([]int, limit)
+	fmt.Println("Enter ", limit, " Array elements")
+	for i := 0; i < limit; i++ {
+		fmt.Scan(&slice[i])
+	}
+	fmt.Println(slice)
+}

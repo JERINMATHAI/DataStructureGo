@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("String in Golang")
+	fmt.Println("----------------")
+
+	//using var
+	var name1 = "Jerin "
+	fmt.Println(name1)
+
+	//using short hand
+	name2 := "Mathai"
+	fmt.Println(name2)
+
+	//using back tick ` `
+	message := `I love Go programming`
+	fmt.Println(message)
+
+	//Access individual characters of string
+	access := "abcdef"
+	fmt.Printf("%c\n", access[0]) //a
+	fmt.Printf("%c\n", access[2]) //c
+	fmt.Printf("%c\n", access[5]) //f
+
+	//Length of string
+	msg := "Find the length of string"
+	stringLength := len(msg)
+	println("Length of the string is: ", stringLength)
+
+	//Join two string
+	fname := "Jerin"
+	lname := "Mathai"
+	result := fname + " " + lname
+	fmt.Println("Joined string is :", result)
+
+}

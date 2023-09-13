@@ -1,0 +1,61 @@
+package main
+
+import "fmt"
+
+//Declare array size as constant
+const ArraySize = 7
+
+//Hash table using array
+type HashTable struct {
+	array [ArraySize]*Bucket
+}
+
+//Bucket using linked list
+type Bucket struct {
+	head *BucketNode
+}
+
+//Bucket Node
+type BucketNode struct {
+	key  string
+	next *BucketNode
+}
+
+//insert
+func (h *HashTable) insert(key string) {
+	index := hash(key)
+
+}
+
+//search
+func (h *HashTable) search(key string) bool {
+	index := hash(key)
+
+}
+
+//delete
+func (h *HashTable) delete(key string) {
+	index := hash(key)
+}
+
+//Hash function
+func hash(key string) int {
+
+}
+
+//init
+func Init() *HashTable {
+	result := &HashTable{}
+	for i := range result.array {
+		result.array[i] = &Bucket{}
+	}
+	return result
+}
+func main() {
+	fmt.Println("Hash Table")
+	fmt.Println("```````````")
+
+	testHashTAble := Init()
+	fmt.Println(testHashTAble)
+
+}

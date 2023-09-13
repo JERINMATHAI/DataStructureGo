@@ -1,0 +1,22 @@
+package main
+
+import "fmt"
+
+func insertionSort(array []int) {
+	size := len(array)
+	for i := 0; i < size; i++ {
+		temp := array[i]
+		j := i - 1
+		for j >= 0 && array[j] > temp {
+			array[j+1] = array[j]
+			j = j - 1
+		}
+		array[j+1] = temp
+	}
+}
+func main() {
+	array := []int{5, 2, 8, 9, 1}
+	fmt.Println("before sort: ", array)
+	insertionSort(array)
+	fmt.Println("after sort: ", array)
+}

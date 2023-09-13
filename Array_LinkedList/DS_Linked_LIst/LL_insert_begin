@@ -1,0 +1,49 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	data int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+}
+
+func (ll *LinkedList) insertBegin(num int) {
+	newNode := new(Node)
+	newNode.data = num
+
+	temp := ll.head
+
+	ll.head = newNode
+	newNode.next = temp
+}
+
+func (ll *LinkedList) Display() {
+	temp := ll.head
+
+	for temp.next.next.next != nil {
+		fmt.Printf("%d-->", temp.data)
+		temp = temp.next.next
+	}
+}
+
+func main() {
+	fmt.Println("Linked List Insert Begin")
+	fmt.Println("*************************")
+
+	list := LinkedList{}
+
+	for true {
+		var num int
+		fmt.Println("Enter the number")
+		fmt.Scan(&num)
+		list.insertBegin(num)
+		list.Display()
+	}
+
+}

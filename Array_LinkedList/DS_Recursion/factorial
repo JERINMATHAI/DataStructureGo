@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func Fact(num int) int {
+	if num < 1 {
+		return 1
+	}
+	return num * Fact(num-1)
+}
+
+func main() {
+	var num int
+	fmt.Println("Enter the limit : ")
+	fmt.Scan(&num)
+	factorial := Fact(num)
+	fmt.Println("Factorial of ", num, " is : ", factorial)
+}

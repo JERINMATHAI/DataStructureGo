@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+func main() {
+	var arr [10]int
+	var size int
+	var item int
+	var flag int = 0
+
+	fmt.Println("Enter the size of array: ")
+	fmt.Scanln(&size)
+
+	fmt.Println("Enter ", size, " array elements")
+	for i := 0; i < size; i++ {
+		fmt.Scanln(&arr[i])
+	}
+
+	fmt.Println("Enter the element to search: ")
+	fmt.Scanln(&item)
+	for i := 0; i <= size; i++ {
+		if item == arr[i] {
+			flag = 1
+			fmt.Println("Item", item, "present at position", i+1)
+		}
+	}
+	if flag == 0 {
+		fmt.Println(item, " is not present")
+	}
+}
